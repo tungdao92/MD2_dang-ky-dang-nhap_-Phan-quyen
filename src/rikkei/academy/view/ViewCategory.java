@@ -24,13 +24,13 @@ public class ViewCategory {
         System.out.println("Enter 'back' to back Menu");
         String backMenu = Config.scanner().nextLine();
         if (backMenu.equalsIgnoreCase("back")) {
-            new Main();
+            new ViewMainMenu();
         }
     }
     public void showListCategory(){
         for (int i = 0; i < categoryList.size(); i++) {
             System.out.println(categoryList.get(i).getId() + " " + categoryList.get(i).getName() + " " + categoryList.get(i).getUser());
         }
-        new Main();
+        new ViewMainMenu();
     }
 }

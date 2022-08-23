@@ -98,17 +98,20 @@ public class ViewUser {
         } else if(check_existed.getMessage().equals("success")){
             System.out.println(ANSI_YELLOW+"CREATE USER SUCCESS!!!!!"+ANSI_RESET);
             System.out.println("CHECK LIST => "+userController.showListUser());
-//            new Main();
+//            new ViewMainMenu();
         }
     }
     public void showListUser(){
         System.out.println("=======ID====NAME=====USERNAME====EMAIL=======AVATAR=======STATUS=====ROLE=====");
         for (int i = 0; i < userList.size(); i++){
 
-            System.out.println("======"+userList.get(i).getId()+ "=======" + userList.get(i).getName() + "======" + userList.get(i).getUsername() + "=====" + userList.get(i).getEmail() + "=====" + userList.get(i).getAvatar()+ "=====" + userList.get(i).isStatus() + "=====" + userList.get(i).getRoles() + "password: " + userList.get(i).getPassword());
-
-
+            System.out.println("======"+userList.get(i).getId()+ "=======" + userList.get(i).getName() + "======" + userList.get(i).getUsername() +
+                    "=====" + userList.get(i).getEmail() + "====="
+                    + userList.get(i).getAvatar()+ "=====" + userList.get(i).isStatus() + "=====" + userList.get(i).getRoles()
+                    + "password: " + userList.get(i).getPassword());
         }
+        new ViewMainMenu();
+
     }
     public void formLogin(){
         String username;
@@ -162,14 +165,16 @@ public class ViewUser {
         }
         System.out.println("2: LogOut");
         System.out.println("3: back");
-        int chooseMenu = Config.scanner().nextInt();
+        int chooseMenu = Integer.parseInt(Config.scanner().nextLine());
         switch (chooseMenu) {
+            case 1:
+                new ViewAdminMenu();
             case 2:
                 new Config<User>().writeFile(Config.PATH_USER_PRINCIPAL, null);
                 formLogin();
                 break;
             case 3:
-                new Main();
+                new ViewMainMenu();
                 break;
 
         }
