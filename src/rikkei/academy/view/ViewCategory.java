@@ -24,13 +24,35 @@ public class ViewCategory {
         System.out.println("Enter 'back' to back Menu");
         String backMenu = Config.scanner().nextLine();
         if (backMenu.equalsIgnoreCase("back")) {
-            new ViewMainMenu();
+            new ViewHome();
         }
     }
     public void showListCategory(){
         for (int i = 0; i < categoryList.size(); i++) {
-            System.out.println(categoryList.get(i).getId() + " " + categoryList.get(i).getName() + " " + categoryList.get(i).getUser());
+            System.out.println("======"+categoryList.get(i).getId() + "======" + categoryList.get(i).getName() + "======\n");
         }
-        new ViewMainMenu();
+        new ViewHome();
+    }
+    public void formEditCategory(){
+        System.out.println("Enter ID to edit category");
+        int idCategory = Integer.parseInt(Config.scanner().nextLine());
+        if (categoryController.searchCategory(idCategory) == null) {
+            System.out.println("ID does not exist");
+        } else {
+            Category category = categoryController.searchCategory(idCategory);
+            System.out.println("OLD category: " + category.getName());
+            System.out.println("Enter new Name category");
+            String nameCategory = Config.scanner().nextLine();
+            Category newCategory = new Category(nameCategory);
+            categoryController.editCategory(idCategory,newCategory);
+            System.out.println("Edit success!!");
+            categoryController.showListCategory();
+            System.out.println("Enter 'back' to back Menu");
+            String backMenu = Config.scanner().nextLine();
+            if (backMenu.equalsIgnoreCase("back")) {
+                new ViewHome();
+            }
+
+        }
     }
 }

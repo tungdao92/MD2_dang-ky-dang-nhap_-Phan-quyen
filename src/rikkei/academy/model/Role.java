@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Role implements Serializable {
     int id;
-    RoleName name;
+    RoleName roleName;
 
     public Role() {
     }
 
     public Role(int id, RoleName name) {
         this.id = id;
-        this.name = name;
+        this.roleName = name;
     }
 
     public int getId() {
@@ -22,19 +22,19 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public RoleName getName() {
-        return name;
+    public RoleName getRoleName() {
+        return roleName;
     }
 
-    public void setName(RoleName name) {
-        this.name = name;
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", name=" + name +
+                ", name=" + roleName +
                 '}';
     }
 }

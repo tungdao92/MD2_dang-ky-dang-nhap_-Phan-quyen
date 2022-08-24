@@ -15,4 +15,12 @@ public class CategoryController {
         categoryService.save(category);
         showListCategory();
     }
+    public Category searchCategory(int id) {
+        return categoryService.findByID(id);
+    }
+    public void editCategory(int id, Category category){
+        Category category1 = categoryService.findByID(id);
+        category1.setName(category.getName());
+        showListCategory();
+    }
 }

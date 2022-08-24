@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 public class UserController {
-    private IUserService userService = new UserServiceIMPL();
-    private IRoleService roleService = new RoleServiceIMPL();
+    IUserService userService = new UserServiceIMPL();
+   IRoleService roleService = new RoleServiceIMPL();
 
     public List<User> showListUser() {
         return userService.findAll();
@@ -58,10 +58,8 @@ public class UserController {
     }
     public ResponseMessenger login (SignInDTO signUpDTO) {
         if(userService.checkLogin(signUpDTO.getUsername(),signUpDTO.getPassword())){
-            User user = userService.findByUserName(signUpDTO.getUsername());
-            List<User> userLogin = new ArrayList<>();
-            userLogin.add(user);
-            new Config<User>().writeFile(Config.PATH_USER_PRINCIPAL, userLogin);
+            User userLogin = userService.findByUserName(signUpDTO.getUsername());
+            userService.saveCurrentUser(userLogin);
             return new ResponseMessenger("success");
         } else {
             return new ResponseMessenger("login_failed");
@@ -69,5 +67,8 @@ public class UserController {
     }
     public User getCurrentUser() {
         return userService.getCurrentUser();
+    }
+    public void logout() {
+        userService.saveCurrentUser(null);
     }
 }

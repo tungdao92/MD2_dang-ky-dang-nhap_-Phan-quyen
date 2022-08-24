@@ -3,10 +3,11 @@ package rikkei.academy.service.role;
 import rikkei.academy.model.RoleName;
 import rikkei.academy.model.Role;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleServiceIMPL  implements IRoleService{
+public class RoleServiceIMPL  implements IRoleService, Serializable {
     public static List<Role> roleList = new ArrayList<>();
     static {
         roleList.add(new Role(1, RoleName.USER));
@@ -21,7 +22,7 @@ public class RoleServiceIMPL  implements IRoleService{
     @Override
     public Role findByName(RoleName name) {
         for (int i = 0; i < roleList.size(); i++) {
-            if (name == roleList.get(i).getName()){
+            if (name == roleList.get(i).getRoleName()){
                 return roleList.get(i);
             }
         }

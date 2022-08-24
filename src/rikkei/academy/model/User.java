@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class User implements Serializable {
-    int id;
+    private int id;
     private String name;
     private String username;
     private String email;
